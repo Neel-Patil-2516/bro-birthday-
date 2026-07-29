@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Krish Turns 18</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#101c15;
+    --ink-2:#182b20;
+    --teal:#2f6b66;
+    --moss:#7a9b4e;
+    --amber:#e8a94c;
+    --sand:#f3eedf;
+    --rust:#b5563a;
+    --line: rgba(243,238,223,0.18);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--ink);
+    color:var(--sand);
+    font-family:'Space Grotesk', sans-serif;
+    overflow-x:hidden;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important;}
+  }
+  h1,h2,h3{font-family:'Fraunces', serif; font-weight:600; line-height:1.05;}
+  a{color:inherit;}
+  ::selection{background:var(--amber); color:var(--ink);}
+
+  /* ---------- LEAF PARTICLES ---------- */
+  #leafCanvas{position:fixed; inset:0; z-index:0; pointer-events:none; opacity:0.55;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    min-height:100svh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:6vh 6vw;
+    background:
+      radial-gradient(ellipse 120% 90% at 50% 0%, rgba(16,28,21,0.35), rgba(16,28,21,0.92) 65%),
+      linear-gradient(180deg, rgba(16,28,21,0.55), var(--ink) 92%),
+      url('photos/6.jpeg');
+    background-size:cover;
+    background-position:center 30%;
+    overflow:hidden;
+  }
+  .eyebrow{
+    letter-spacing:0.32em;
+    text-transform:uppercase;
+    font-size:0.72rem;
+    color:var(--amber);
+    font-weight:600;
+    opacity:0;
+    animation:riseIn 0.9s ease forwards 0.15s;
+  }
+  .hero h1{
+    font-size:clamp(2.6rem, 9vw, 6.4rem);
+    margin-top:0.6rem;
+    color:var(--sand);
+    opacity:0;
+    animation:riseIn 1s ease forwards 0.35s;
+  }
+  .hero h1 em{
+    font-style:italic;
+    color:var(--amber);
+  }
+  .hero .sub{
+    margin-top:1.1rem;
+    max-width:36ch;
+    font-size:1.02rem;
+    color:rgba(243,238,223,0.75);
+    opacity:0;
+    animation:riseIn 1s ease forwards 0.55s;
+  }
+  @keyframes riseIn{
+    from{opacity:0; transform:translateY(18px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+
+  /* countdown */
+  .countdown{
+    display:flex;
+    gap:clamp(0.6rem,2vw,1.4rem);
+    margin-top:2.8rem;
+    opacity:0;
+    animation:riseIn 1s ease forwards 0.75s;
+  }
+  .unit{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    background:rgba(243,238,223,0.06);
+    border:1px solid var(--line);
+    backdrop-filter:blur(6px);
+    border-radius:10px;
+    padding:0.9rem 0.4rem;
+    min-width:clamp(58px, 16vw, 92px);
+    position:relative;
+  }
+  .unit .num{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:700;
+    font-size:clamp(1.6rem, 5vw, 2.6rem);
+    font-variant-numeric:tabular-nums;
+    color:var(--sand);
+    transition:transform 0.25s ease;
+  }
+  .unit .num.tick{ animation:tick 0.4s ease; }
+  @keyframes tick{
+    0%{transform:translateY(-8px); opacity:0.3;}
+    100%{transform:translateY(0); opacity:1;}
+  }
+  .unit .lbl{
+    margin-top:0.3rem;
+    font-size:0.62rem;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--moss);
+  }
+  .colon{ align-self:center; font-size:1.6rem; color:var(--line); margin-top:-1rem; }
+
+  .hero-date{
+    margin-top:1.6rem;
+    font-size:0.78rem;
+    letter-spacing:0.12em;
+    color:rgba(243,238,223,0.55);
+    opacity:0;
+    animation:riseIn 1s ease forwards 0.9s;
+  }
+
+  .scroll-cue{
+    position:absolute;
+    bottom:2.4rem; left:50%;
+    transform:translateX(-50%);
+    font-size:0.68rem;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    color:rgba(243,238,223,0.45);
+    display:flex; flex-direction:column; align-items:center; gap:0.5rem;
+  }
+  .scroll-cue .line{
+    width:1px; height:32px;
+    background:linear-gradient(var(--amber), transparent);
+    animation:pulse 1.8s ease-in-out infinite;
+  }
+  @keyframes pulse{ 0%,100%{opacity:0.3;} 50%{opacity:1;} }
+
+  /* ---------- TRAIL SECTION ---------- */
+  .trail-section{
+    position:relative;
+    padding:8vh 6vw 4vh;
+    max-width:980px;
+    margin:0 auto;
+  }
+  .trail-head{
+    text-align:center;
+    margin-bottom:5vh;
+  }
+  .trail-head .eyebrow{ color:var(--moss); opacity:1; animation:none; position:static; }
+  .trail-head h2{
+    font-size:clamp(1.8rem, 5vw, 3rem);
+    margin-top:0.5rem;
+  }
+  .trail-head p{
+    margin-top:0.8rem;
+    color:rgba(243,238,223,0.6);
+    max-width:46ch;
+    margin-inline:auto;
+    font-size:0.95rem;
+  }
+
+  .trail-path-svg{
+    position:absolute;
+    left:50%;
+    top:0;
+    transform:translateX(-50%);
+    width:2px;
+    height:100%;
+    z-index:0;
+  }
+  .trail-line{
+    stroke:var(--moss);
+    stroke-width:2;
+    stroke-dasharray:6 10;
+    opacity:0.35;
+  }
+
+  .waypoint{
+    position:relative;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    align-items:center;
+    gap:clamp(1.2rem, 4vw, 3rem);
+    margin-bottom:9vh;
+    opacity:0;
+    transform:translateY(40px);
+    transition:opacity 0.8s ease, transform 0.8s ease;
+  }
+  .waypoint.visible{ opacity:1; transform:translateY(0); }
+  .waypoint:nth-child(even){ direction:rtl; }
+  .waypoint:nth-child(even) .wp-text{ direction:ltr; }
+  .waypoint:nth-child(even) .wp-figure{ direction:ltr; }
+
+  .wp-figure{
+    position:relative;
+    border-radius:16px;
+    overflow:hidden;
+    aspect-ratio:4/5;
+    background:var(--ink-2);
+    box-shadow:0 18px 40px rgba(0,0,0,0.45);
+    transform:rotate(var(--tilt,-2deg));
+    transition:transform 0.4s ease;
+  }
+  .wp-figure:hover{ transform:rotate(0deg) scale(1.02); }
+  .wp-figure img{
+    width:100%; height:100%; object-fit:cover; object-position:center 20%;
+    display:block;
+    filter:saturate(0.92) contrast(1.02);
+  }
+  .wp-figure .tag{
+    position:absolute; top:0.9rem; left:0.9rem;
+    background:rgba(16,28,21,0.72);
+    border:1px solid var(--line);
+    color:var(--amber);
+    font-size:0.68rem;
+    letter-spacing:0.14em;
+    padding:0.28rem 0.6rem;
+    border-radius:100px;
+    backdrop-filter:blur(4px);
+  }
+
+  .wp-text .mark{
+    font-family:'Space Grotesk';
+    font-size:0.72rem;
+    letter-spacing:0.2em;
+    color:var(--moss);
+    text-transform:uppercase;
+  }
+  .wp-text h3{
+    font-size:clamp(1.3rem, 3vw, 1.8rem);
+    margin-top:0.5rem;
+    color:var(--sand);
+  }
+  .wp-text p{
+    margin-top:0.6rem;
+    color:rgba(243,238,223,0.65);
+    font-size:0.94rem;
+    max-width:32ch;
+  }
+
+  @media (max-width:720px){
+    .waypoint, .waypoint:nth-child(even){
+      grid-template-columns:1fr;
+      direction:ltr;
+      gap:1rem;
+    }
+    .trail-path-svg{ display:none; }
+    .wp-figure{ aspect-ratio:5/4; }
+  }
+
+  /* ---------- FINALE ---------- */
+  .finale{
+    position:relative;
+    min-height:100svh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:8vh 6vw;
+    background:
+      radial-gradient(ellipse 100% 70% at 50% 100%, rgba(122,155,78,0.18), transparent 70%),
+      var(--ink);
+    overflow:hidden;
+  }
+  .sapling{
+    font-size:0.72rem;
+    letter-spacing:0.28em;
+    text-transform:uppercase;
+    color:var(--moss);
+    margin-bottom:1rem;
+  }
+  .finale h2{
+    font-size:clamp(2.2rem, 7vw, 4.6rem);
+    max-width:16ch;
+  }
+  .finale h2 em{ color:var(--amber); font-style:italic; }
+  .finale .msg{
+    margin-top:1.4rem;
+    max-width:44ch;
+    color:rgba(243,238,223,0.72);
+    font-size:1.05rem;
+    line-height:1.6;
+  }
+  .wish-btn{
+    margin-top:2.4rem;
+    background:var(--rust);
+    color:var(--sand);
+    border:none;
+    padding:0.95rem 2.2rem;
+    border-radius:100px;
+    font-family:'Space Grotesk';
+    font-weight:600;
+    font-size:0.95rem;
+    letter-spacing:0.02em;
+    cursor:pointer;
+    transition:transform 0.25s ease, box-shadow 0.25s ease;
+    box-shadow:0 10px 30px rgba(181,86,58,0.35);
+  }
+  .wish-btn:hover{ transform:translateY(-3px); box-shadow:0 16px 40px rgba(181,86,58,0.45); }
+  .wish-btn:focus-visible{ outline:2px solid var(--amber); outline-offset:3px; }
+
+  .footer-note{
+    margin-top:3.4rem;
+    font-size:0.72rem;
+    letter-spacing:0.1em;
+    color:rgba(243,238,223,0.35);
+  }
+
+  #confettiCanvas{
+    position:fixed; inset:0; z-index:50; pointer-events:none;
+  }
+
+  .locked-msg{
+    display:none;
+    margin-top:1.2rem;
+    font-size:0.85rem;
+    color:var(--amber);
+  }
+</style>
+</head>
+<body>
+
+<canvas id="leafCanvas"></canvas>
+<canvas id="confettiCanvas"></canvas>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="eyebrow">An expedition log &middot; 18 years in</div>
+  <h1>Krish Turns <em>18</em></h1>
+  <p class="sub">Every river, every sapling, every ridiculous fish held up to the camera — it all led here.</p>
+
+  <div class="countdown" id="countdown" aria-live="polite">
+    <div class="unit"><span class="num" id="d">00</span><span class="lbl">Days</span></div>
+    <div class="colon">:</div>
+    <div class="unit"><span class="num" id="h">00</span><span class="lbl">Hrs</span></div>
+    <div class="colon">:</div>
+    <div class="unit"><span class="num" id="m">00</span><span class="lbl">Min</span></div>
+    <div class="colon">:</div>
+    <div class="unit"><span class="num" id="s">00</span><span class="lbl">Sec</span></div>
+  </div>
+  <div class="hero-date">Countdown to July 30, 2026</div>
+
+  <div class="scroll-cue"><span>The trail so far</span><span class="line"></span></div>
+</section>
+
+<!-- TRAIL / WAYPOINTS -->
+<section class="trail-section">
+  <div class="trail-head">
+    <div class="eyebrow">Waypoints</div>
+    <h2>The trail so far</h2>
+    <p>Eighteen years compressed into a handful of riverbanks, one stubborn wheat field, and a few trees he insisted on carrying home.</p>
+  </div>
+
+  <svg class="trail-path-svg" preserveAspectRatio="none">
+    <line class="trail-line" x1="1" y1="0" x2="1" y2="100%" />
+  </svg>
+
+  <div class="waypoint" style="--tilt:-2deg">
+    <div class="wp-figure"><span class="tag">Waypoint 01</span><img src="/bhai/1.jpeg" alt="Krish barefoot by the river in a yellow hoodie, 2019" loading="lazy"></div>
+    <div class="wp-text">
+      <div class="mark">Riverside &middot; 2019</div>
+      <h3>Always barefoot, always grinning</h3>
+      <p>Yellow hoodie, no shoes, one hundred percent sure the water was fine.</p>
+    </div>
+  </div>
+
+  <div class="waypoint" style="--tilt:2deg">
+    <div class="wp-figure"><span class="tag">Waypoint 02</span><img src="/bhai/6.jpeg" alt="Krish standing at the water's edge on a sunny day, 2019" loading="lazy"></div>
+    <div class="wp-text">
+      <div class="mark">Same river &middot; 2019</div>
+      <h3>Still figuring out the current</h3>
+      <p>Same riverbank, better light — already looking like he owned the place.</p>
+    </div>
+  </div>
+
+  <div class="waypoint" style="--tilt:-1.5deg">
+    <div class="wp-figure"><span class="tag">Waypoint 03</span><img src="/bhai/2.jpeg" alt="Krish with family in a field holding tall grass" loading="lazy"></div>
+    <div class="wp-text">
+      <div class="mark">The fields</div>
+      <h3>Harvest-season company</h3>
+      <p>A field, a fistful of grass stalks, and family close enough to lean on.</p>
+    </div>
+  </div>
+
+  <div class="waypoint" style="--tilt:2.5deg">
+    <div class="wp-figure"><span class="tag">Waypoint 04</span><img src="/bhai/4.jpeg" alt="Krish holding a fish under a bridge, shouting with excitement" loading="lazy"></div>
+    <div class="wp-text">
+      <div class="mark">The catch</div>
+      <h3>The one that <em>did</em> get caught</h3>
+      <p>Under the bridge, mid-shout, holding proof before anyone could doubt him.</p>
+    </div>
+  </div>
+
+  <div class="waypoint" style="--tilt:-2deg">
+    <div class="wp-figure"><span class="tag">Waypoint 05</span><img src="/bhai/7.jpeg" alt="Krish in profile holding up a small fish near a bridge" loading="lazy"></div>
+    <div class="wp-text">
+      <div class="mark">Riverbed</div>
+      <h3>Show and tell, riverside edition</h3>
+      <p>Same rocks, same bridge, one more fish to hold up to the sky.</p>
+    </div>
+  </div>
+
+  <div class="waypoint" style="--tilt:1.5deg">
+    <div class="wp-figure"><span class="tag">Waypoint 06</span><img src="/bhai/5.jpeg" alt="Krish leaning against a large tree, looking out at the river" loading="lazy"></div>
+    <div class="wp-text">
+      <div class="mark">Under the old tree</div>
+      <h3>Cool as the shade he's leaning on</h3>
+      <p>A tree twice his age, a pose ten times his usual confidence.</p>
+    </div>
+  </div>
+
+  <div class="waypoint" style="--tilt:-2.5deg">
+    <div class="wp-figure"><span class="tag">Waypoint 07</span><img src="/bhai/8.jpeg" alt="Krish smiling while holding a leafy branch" loading="lazy"></div>
+    <div class="wp-text">
+      <div class="mark">Roadside</div>
+      <h3>Planting something that'll outgrow him</h3>
+      <p>He never walks past a sapling without picking it up first.</p>
+    </div>
+  </div>
+
+  <div class="waypoint" style="--tilt:2deg">
+    <div class="wp-figure"><span class="tag">Waypoint 08</span><img src="/bhai/9.jpeg" alt="Krish holding a tall sapling by the roadside" loading="lazy"></div>
+    <div class="wp-text">
+      <div class="mark">A sapling of his own</div>
+      <h3>Taller than the last one</h3>
+      <p>Same habit, bigger branch — turns out that's a fair metaphor for him too.</p>
+    </div>
+  </div>
+
+  <div class="waypoint" style="--tilt:-1.5deg">
+    <div class="wp-figure"><span class="tag">Waypoint 09</span><img src="/bhai/10.jpeg" alt="Krish holding a sapling and giving a peace sign in a green field" loading="lazy"></div>
+    <div class="wp-text">
+      <div class="mark">Present day</div>
+      <h3>Still growing, still grinning</h3>
+      <p>Peace sign, one hand on something green — the trail brings us right up to now.</p>
+    </div>
+  </div>
+
+  <div class="waypoint" style="--tilt:2deg">
+    <div class="wp-figure"><span class="tag">Waypoint 10</span><img src="/bhai/1.jpeg" alt="Krish taking a mirror selfie" loading="lazy"></div>
+    <div class="wp-text">
+      <div class="mark">Today</div>
+      <h3>Camera roll, latest chapter</h3>
+      <p>Eighteen years in, and the trail's nowhere near done.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FINALE -->
+<section class="finale">
+  <div class="sapling">The trail leads here</div>
+  <h2>Happy <em>18th</em>, Krish.</h2>
+  <p class="msg">Here's to every riverbank you'll still wander into, every tree you can't resist picking up, and every year ahead worth planting something for. Eighteen looks good on you.</p>
+  <button class="wish-btn" id="wishBtn">Send Krish some confetti</button>
+  <div class="footer-note">Made with a little too much love for one page &middot; July 30, 2026</div>
+</section>
+
+<script>
+// ---------------- COUNTDOWN ----------------
+const target = new Date('2026-07-30T00:00:00');
+const dEl=document.getElementById('d'), hEl=document.getElementById('h'),
+      mEl=document.getElementById('m'), sEl=document.getElementById('s');
+
+function pad(n){ return String(n).padStart(2,'0'); }
+
+let prev = {d:null,h:null,m:null,s:null};
+function tickAnim(el, val, key){
+  if(prev[key] !== val){
+    el.textContent = pad(val);
+    el.classList.remove('tick');
+    void el.offsetWidth;
+    el.classList.add('tick');
+    prev[key] = val;
+  }
+}
+
+function updateCountdown(){
+  const now = new Date();
+  let diff = target - now;
+  if(diff <= 0){
+    dEl.textContent='00'; hEl.textContent='00'; mEl.textContent='00'; sEl.textContent='00';
+    document.querySelector('.hero-date').textContent = "It's here — happy 18th, Krish! 🎉";
+    return;
+  }
+  const days = Math.floor(diff/(1000*60*60*24));
+  const hours = Math.floor((diff/(1000*60*60))%24);
+  const mins = Math.floor((diff/(1000*60))%60);
+  const secs = Math.floor((diff/1000)%60);
+  tickAnim(dEl, days, 'd');
+  tickAnim(hEl, hours, 'h');
+  tickAnim(mEl, mins, 'm');
+  tickAnim(sEl, secs, 's');
+}
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+// ---------------- SCROLL REVEAL ----------------
+const waypoints = document.querySelectorAll('.waypoint');
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); }
+  });
+}, {threshold:0.18});
+waypoints.forEach(w=>io.observe(w));
+
+// ---------------- AMBIENT LEAF PARTICLES ----------------
+const leafCanvas = document.getElementById('leafCanvas');
+const lctx = leafCanvas.getContext('2d');
+let W,H;
+function resizeLeaf(){ W=leafCanvas.width=window.innerWidth; H=leafCanvas.height=window.innerHeight; }
+resizeLeaf();
+window.addEventListener('resize', resizeLeaf);
+
+const leaves = Array.from({length: window.innerWidth<700?10:18}, ()=>({
+  x: Math.random()*W,
+  y: Math.random()*H - H,
+  r: 4+Math.random()*5,
+  speed: 0.3+Math.random()*0.6,
+  drift: Math.random()*1-0.5,
+  rot: Math.random()*Math.PI*2,
+  rotSpeed: (Math.random()-0.5)*0.02,
+  hue: Math.random()>0.5 ? '122,155,78' : '232,169,76'
+}));
+
+function drawLeaf(l){
+  lctx.save();
+  lctx.translate(l.x,l.y);
+  lctx.rotate(l.rot);
+  lctx.fillStyle = `rgba(${l.hue},0.5)`;
+  lctx.beginPath();
+  lctx.ellipse(0,0,l.r,l.r*0.6,0,0,Math.PI*2);
+  lctx.fill();
+  lctx.restore();
+}
+
+let reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+function animateLeaves(){
+  if(reduceMotion) return;
+  lctx.clearRect(0,0,W,H);
+  leaves.forEach(l=>{
+    l.y += l.speed;
+    l.x += l.drift;
+    l.rot += l.rotSpeed;
+    if(l.y > H+20){ l.y = -20; l.x = Math.random()*W; }
+    drawLeaf(l);
+  });
+  requestAnimationFrame(animateLeaves);
+}
+animateLeaves();
+
+// ---------------- CONFETTI BURST ----------------
+const confettiCanvas = document.getElementById('confettiCanvas');
+const cctx = confettiCanvas.getContext('2d');
+function resizeConf(){ confettiCanvas.width=window.innerWidth; confettiCanvas.height=window.innerHeight; }
+resizeConf();
+window.addEventListener('resize', resizeConf);
+
+const colors = ['#e8a94c','#7a9b4e','#b5563a','#f3eedf','#2f6b66'];
+let particles = [];
+
+function burst(){
+  particles = Array.from({length:140}, ()=>({
+    x: confettiCanvas.width/2 + (Math.random()-0.5)*200,
+    y: confettiCanvas.height*0.5,
+    vx: (Math.random()-0.5)*12,
+    vy: Math.random()*-14-4,
+    size: 4+Math.random()*5,
+    color: colors[Math.floor(Math.random()*colors.length)],
+    rot: Math.random()*Math.PI*2,
+    rotSpeed: (Math.random()-0.5)*0.3,
+    life: 0
+  }));
+  requestAnimationFrame(runConfetti);
+}
+
+function runConfetti(){
+  cctx.clearRect(0,0,confettiCanvas.width,confettiCanvas.height);
+  let alive = false;
+  particles.forEach(p=>{
+    p.vy += 0.28;
+    p.x += p.vx;
+    p.y += p.vy;
+    p.rot += p.rotSpeed;
+    p.life++;
+    if(p.y < confettiCanvas.height+20 && p.life < 260){
+      alive = true;
+      cctx.save();
+      cctx.translate(p.x,p.y);
+      cctx.rotate(p.rot);
+      cctx.fillStyle = p.color;
+      cctx.fillRect(-p.size/2,-p.size/2,p.size,p.size*0.6);
+      cctx.restore();
+    }
+  });
+  if(alive) requestAnimationFrame(runConfetti);
+  else cctx.clearRect(0,0,confettiCanvas.width,confettiCanvas.height);
+}
+
+document.getElementById('wishBtn').addEventListener('click', burst);
+</script>
+</body>
+</html>
